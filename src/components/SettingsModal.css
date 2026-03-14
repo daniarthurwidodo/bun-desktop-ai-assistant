@@ -1,0 +1,177 @@
+.settings-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 5, 16, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.settings-modal {
+  background: var(--cyber-bg-secondary);
+  border: 1px solid var(--cyber-border-subtle);
+  border-radius: 12px;
+  padding: 0;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 0 40px rgba(176, 38, 255, 0.3),
+    0 0 80px rgba(176, 38, 255, 0.1);
+  overflow: hidden;
+  cursor: default;
+}
+
+.settings-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--cyber-border-subtle);
+}
+
+.settings-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cyber-text-primary);
+  letter-spacing: 0.5px;
+}
+
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--cyber-text-secondary);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all var(--cyber-transition-fast);
+}
+
+.modal-close:hover {
+  background: rgba(176, 38, 255, 0.15);
+  color: var(--cyber-neon-purple);
+}
+
+.modal-close ion-icon {
+  font-size: 20px;
+}
+
+.settings-modal-content {
+  padding: 24px;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.setting-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cyber-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.api-key-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.api-key-input-wrapper input {
+  flex: 1;
+  padding: 12px 44px 12px 16px;
+  background: var(--cyber-bg-tertiary);
+  border: 1px solid var(--cyber-border-subtle);
+  border-radius: 8px;
+  color: var(--cyber-text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  outline: none;
+  transition: all var(--cyber-transition-fast);
+}
+
+.api-key-input-wrapper input:focus {
+  border-color: var(--cyber-neon-purple);
+  box-shadow: 0 0 15px rgba(176, 38, 255, 0.25);
+}
+
+.api-key-input-wrapper input::placeholder {
+  color: var(--cyber-text-dim);
+}
+
+.toggle-visibility {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--cyber-text-secondary);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all var(--cyber-transition-fast);
+}
+
+.toggle-visibility:hover {
+  background: rgba(176, 38, 255, 0.15);
+  color: var(--cyber-neon-purple);
+}
+
+.toggle-visibility ion-icon {
+  font-size: 18px;
+}
+
+.setting-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--cyber-text-dim);
+  line-height: 1.5;
+}
+
+.settings-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  border-top: 1px solid var(--cyber-border-subtle);
+}
+
+.save-button {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--cyber-neon-purple) 0%, var(--cyber-neon-purple-dim) 100%);
+  border: 1px solid var(--cyber-neon-purple);
+  border-radius: 8px;
+  color: var(--cyber-bg-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--cyber-transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.save-button:hover {
+  background: linear-gradient(135deg, var(--cyber-neon-purple-dim) 0%, var(--cyber-neon-purple) 100%);
+  box-shadow: 0 0 20px rgba(176, 38, 255, 0.5);
+}
+
+.save-button:active {
+  box-shadow: 0 0 30px rgba(176, 38, 255, 0.7);
+}

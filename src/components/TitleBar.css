@@ -1,0 +1,196 @@
+.title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  background: var(--cyber-bg-primary);
+  border-bottom: var(--cyber-border-subtle);
+  -webkit-app-region: drag;
+  user-select: none;
+  z-index: 1000;
+}
+
+.title-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--cyber-neon-purple) 50%,
+    transparent 100%
+  );
+  opacity: 0.8;
+}
+
+.title-bar-drag-region {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 16px;
+  height: 100%;
+}
+
+.app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--cyber-neon-purple);
+  filter: drop-shadow(0 0 6px rgba(176, 38, 255, 0.8));
+  cursor: default;
+}
+
+.app-icon ion-icon {
+  font-size: 18px;
+}
+
+.app-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cyber-text-primary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: default;
+  position: relative;
+}
+
+.app-title::after {
+  content: '●';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 6px;
+  color: var(--cyber-success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--cyber-success));
+  }
+  50% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 2px var(--cyber-success));
+  }
+}
+
+.window-controls {
+  display: flex;
+  gap: 4px;
+  padding: 0;
+  margin-right: 8px;
+  -webkit-app-region: no-drag;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--cyber-text-secondary);
+  cursor: pointer;
+  transition: all var(--cyber-transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.control-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--cyber-neon-purple);
+  opacity: 0;
+  transition: opacity var(--cyber-transition-fast);
+}
+
+.control-button:hover {
+  color: var(--cyber-text-primary);
+  border-color: rgba(176, 38, 255, 0.4);
+}
+
+.control-button:hover::before {
+  opacity: 0.15;
+}
+
+.control-button:active {
+  color: var(--cyber-neon-purple);
+  border-color: var(--cyber-neon-purple);
+}
+
+.control-button:active::before {
+  opacity: 0.2;
+}
+
+.control-button.minimize:hover {
+  color: var(--cyber-warning);
+}
+
+.control-button.minimize:hover::before {
+  background: var(--cyber-warning);
+}
+
+.control-button.minimize:active {
+  color: var(--cyber-warning);
+  filter: drop-shadow(0 0 8px rgba(255, 190, 0, 0.5));
+}
+
+.control-button.maximize:hover {
+  color: var(--cyber-success);
+}
+
+.control-button.maximize:hover::before {
+  background: var(--cyber-success);
+}
+
+.control-button.maximize:active {
+  color: var(--cyber-success);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 157, 0.5));
+}
+
+.control-button.close:hover {
+  color: var(--cyber-error);
+}
+
+.control-button.close:hover::before {
+  background: var(--cyber-error);
+}
+
+.control-button.close:active {
+  color: var(--cyber-error);
+  filter: drop-shadow(0 0 8px rgba(255, 0, 60, 0.5));
+}
+
+.control-button ion-icon {
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.control-button svg {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  z-index: 1;
+  stroke: currentColor;
+  fill: none;
+}

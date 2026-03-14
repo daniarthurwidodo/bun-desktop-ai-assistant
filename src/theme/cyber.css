@@ -1,0 +1,86 @@
+/* Cyber Theme CSS Variables - Deep Purple Neon */
+:root {
+  /* Core colors - deep cyber palette */
+  --cyber-bg-primary: #0a0510;
+  --cyber-bg-secondary: #110a1a;
+  --cyber-bg-tertiary: #1a0f26;
+
+  /* Neon accents */
+  --cyber-neon-purple: #b026ff;
+  --cyber-neon-purple-dim: #7b2cbf;
+  --cyber-neon-pink: #ff006e;
+  --cyber-neon-blue: #5c24ff;
+
+  /* Status colors */
+  --cyber-success: #00ff9d;
+  --cyber-warning: #ffbe00;
+  --cyber-error: #ff003c;
+
+  /* Text */
+  --cyber-text-primary: #f0e8f8;
+  --cyber-text-secondary: #a88ab8;
+  --cyber-text-dim: #584468;
+
+  /* Effects */
+  --cyber-glow-purple: 0 0 10px rgba(176, 38, 255, 0.6), 0 0 30px rgba(176, 38, 255, 0.4), 0 0 60px rgba(176, 38, 255, 0.2);
+  --cyber-glow-purple-soft: 0 0 10px rgba(176, 38, 255, 0.4), 0 0 20px rgba(176, 38, 255, 0.2);
+  --cyber-glow-pink: 0 0 10px rgba(255, 0, 110, 0.5), 0 0 20px rgba(255, 0, 110, 0.3);
+
+  /* Borders */
+  --cyber-border-subtle: 1px solid rgba(176, 38, 255, 0.2);
+  --cyber-border-active: 1px solid rgba(176, 38, 255, 0.4);
+  --cyber-border-glow: 1px solid rgba(176, 38, 255, 0.8);
+
+  /* Transitions */
+  --cyber-transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --cyber-transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* Global Cyber Styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: transparent !important;
+  margin: 0;
+  color: var(--cyber-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  background: transparent;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-bg-tertiary);
+  border: 1px solid rgba(176, 38, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-bg-tertiary);
+  border-color: var(--cyber-neon-purple);
+}
+
+/* Selection */
+::selection {
+  background: rgba(176, 38, 255, 0.3);
+  color: var(--cyber-text-primary);
+}
