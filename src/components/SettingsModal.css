@@ -4,8 +4,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 5, 16, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,14 +14,13 @@
 }
 
 .settings-modal {
-  background: var(--cyber-bg-secondary);
-  border: 1px solid var(--cyber-border-subtle);
+  background: var(--card-bg);
+  border: 1px solid var(--border-medium);
   border-radius: 12px;
   padding: 0;
   width: 100%;
   max-width: 450px;
-  box-shadow: 0 0 40px rgba(176, 38, 255, 0.3),
-    0 0 80px rgba(176, 38, 255, 0.1);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
   cursor: default;
 }
@@ -31,14 +30,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  border-bottom: 1px solid var(--cyber-border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .settings-modal-header h2 {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: var(--cyber-text-primary);
+  color: var(--text-primary);
   letter-spacing: 0.5px;
 }
 
@@ -51,15 +50,15 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: var(--cyber-text-secondary);
+  color: var(--text-secondary);
   cursor: pointer;
   border-radius: 6px;
-  transition: all var(--cyber-transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .modal-close:hover {
-  background: rgba(176, 38, 255, 0.15);
-  color: var(--cyber-neon-purple);
+  background: var(--surface-bg);
+  color: var(--accent-primary);
 }
 
 .modal-close ion-icon {
@@ -79,7 +78,7 @@
 .setting-group label {
   font-size: 13px;
   font-weight: 500;
-  color: var(--cyber-text-primary);
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
@@ -93,23 +92,23 @@
 .api-key-input-wrapper input {
   flex: 1;
   padding: 12px 44px 12px 16px;
-  background: var(--cyber-bg-tertiary);
-  border: 1px solid var(--cyber-border-subtle);
+  background: var(--surface-bg);
+  border: 1px solid var(--border-medium);
   border-radius: 8px;
-  color: var(--cyber-text-primary);
+  color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 13px;
   outline: none;
-  transition: all var(--cyber-transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .api-key-input-wrapper input:focus {
-  border-color: var(--cyber-neon-purple);
-  box-shadow: 0 0 15px rgba(176, 38, 255, 0.25);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(13, 115, 236, 0.3);
 }
 
 .api-key-input-wrapper input::placeholder {
-  color: var(--cyber-text-dim);
+  color: var(--text-tertiary);
 }
 
 .toggle-visibility {
@@ -123,15 +122,15 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: var(--cyber-text-secondary);
+  color: var(--text-secondary);
   cursor: pointer;
   border-radius: 6px;
-  transition: all var(--cyber-transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .toggle-visibility:hover {
-  background: rgba(176, 38, 255, 0.15);
-  color: var(--cyber-neon-purple);
+  background: var(--surface-bg);
+  color: var(--accent-primary);
 }
 
 .toggle-visibility ion-icon {
@@ -141,7 +140,7 @@
 .setting-hint {
   margin: 0;
   font-size: 12px;
-  color: var(--cyber-text-dim);
+  color: var(--text-tertiary);
   line-height: 1.5;
 }
 
@@ -149,29 +148,29 @@
   display: flex;
   justify-content: flex-end;
   padding: 16px 24px;
-  border-top: 1px solid var(--cyber-border-subtle);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .save-button {
   padding: 10px 24px;
-  background: linear-gradient(135deg, var(--cyber-neon-purple) 0%, var(--cyber-neon-purple-dim) 100%);
-  border: 1px solid var(--cyber-neon-purple);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  border: none;
   border-radius: 8px;
-  color: var(--cyber-bg-primary);
+  color: white;
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--cyber-transition-fast);
+  transition: all var(--transition-fast);
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
 
 .save-button:hover {
-  background: linear-gradient(135deg, var(--cyber-neon-purple-dim) 0%, var(--cyber-neon-purple) 100%);
-  box-shadow: 0 0 20px rgba(176, 38, 255, 0.5);
+  background: linear-gradient(135deg, var(--accent-primary-hover) 0%, var(--accent-primary) 100%);
+  box-shadow: var(--glow-primary);
 }
 
 .save-button:active {
-  box-shadow: 0 0 30px rgba(176, 38, 255, 0.7);
+  transform: scale(0.98);
 }

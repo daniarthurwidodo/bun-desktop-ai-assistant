@@ -43,7 +43,9 @@ export function TitleBar() {
         </div>
         <span className="app-title">Bun Desktop AI Assistant</span>
       </div>
-      <WindowControls />
+      <div className="window-controls-container">
+        <WindowControls />
+      </div>
     </div>
   );
 }

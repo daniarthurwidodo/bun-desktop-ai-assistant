@@ -1,0 +1,102 @@
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background: var(--secondary-bg);
+  border-top: 1px solid var(--border-subtle);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.bottom-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-primary) 50%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+.bottom-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.bottom-bar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.bottom-bar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.bottom-bar-os-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bottom-bar-os-info ion-icon {
+  font-size: 13px;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.bottom-bar-cog-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.bottom-bar-cog-button:hover {
+  color: var(--accent-primary);
+  border-color: var(--border-medium);
+  background: var(--surface-bg);
+}
+
+.bottom-bar-cog-button ion-icon {
+  font-size: 16px;
+}
+
+/* Flip the model dropdown to open upward in the bottom bar */
+.bottom-bar .model-dropdown {
+  top: auto;
+  bottom: calc(100% + 8px);
+}

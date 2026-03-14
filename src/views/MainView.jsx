@@ -1,27 +1,32 @@
-import { TitleBar, SettingsModal, ModelSelector } from "../components";
+import { TitleBar, SettingsModal, BottomBar } from "../components";
+import { useToast } from "../components/ToastNotification";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./MainView.css";
 
-const cogVariants = {
-  initial: { rotate: 0 },
-  hover: {
-    rotate: 180,
-    transition: { duration: 0.5, ease: "easeInOut" }
-  },
-  tap: {
-    rotate: 225,
-    transition: { duration: 0.3 }
-  }
+// Define the capabilities for each model
+const MODEL_CAPABILITIES = {
+  "openai/gpt-3.5-turbo": ["text"],
+  "openai/gpt-4-turbo": ["text", "image"],
+  "openai/gpt-4o": ["text", "image"],
+  "openai/gpt-4o-mini": ["text", "image"],
+  "anthropic/claude-3-haiku": ["text", "image"],
+  "anthropic/claude-3-sonnet": ["text", "image"],
+  "anthropic/claude-3-opus": ["text", "image"],
+  "google/gemini-pro-1.5": ["text", "image"],
+  "meta-llama/llama-3-8b-instruct": ["text"],
+  "meta-llama/llama-3-70b-instruct": ["text"],
+  "mistralai/mistral-small": ["text"],
+  "mistralai/mistral-large": ["text"],
 };
 
 export function MainView() {
+  const { addToast } = useToast();
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [osInfo, setOsInfo] = useState(null);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -33,27 +38,25 @@ export function MainView() {
   }, [messages]);
 
   useEffect(() => {
-    const checkOs = async () => {
-      try {
-        const info = await invoke("get_os_info");
-        setOsInfo(info);
-        console.log("OS Info:", info);
-      } catch (err) {
-        console.error("Failed to get OS info:", err);
-      }
-    };
 
-    checkOs();
-  }, []);
-
-  useEffect(() => {
     const sendImageToChat = async (imagePath) => {
+      // Get selected model
+      const model = localStorage.getItem("selected_model") || "openai/gpt-3.5-turbo";
+      const modelCapabilities = MODEL_CAPABILITIES[model] || [];
+      
+      // Check if the selected model supports images
+      if (!modelCapabilities.includes("image")) {
+        // Show a toast notification
+        addToast(`Model "${model}" does not support image analysis. Please choose a vision-compatible model.`, "warning", 5000);
+        return;
+      }
+      
       const userMessage = "analyze this image";
       setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
       setIsLoading(true);
+
       try {
         const apiKey = localStorage.getItem("api_key") || "";
-        const model = localStorage.getItem("selected_model") || "openai/gpt-4o";
         const result = await invoke("chat_with_image", {
           imagePath,
           message: userMessage,
@@ -115,23 +118,6 @@ export function MainView() {
   return (
     <main className="main-view">
       <TitleBar />
-      <ModelSelector />
-      <motion.button
-        className="settings-button"
-        onClick={handleSettingsClick}
-        variants={cogVariants}
-        initial="initial"
-        whileHover="hover"
-        whileTap="tap"
-      >
-        <ion-icon name="settings-outline"></ion-icon>
-      </motion.button>
-      {osInfo && (
-        <div className="os-info">
-          <ion-icon name="desktop-outline"></ion-icon>
-          <span>{osInfo.os_type} ({osInfo.arch})</span>
-        </div>
-      )}
 
       <div className="chat-messages">
         <AnimatePresence>
@@ -179,25 +165,28 @@ export function MainView() {
         <div ref={messagesEndRef} />
       </div>
 
-      <form className="chat-input-form" onSubmit={handleSendMessage}>
-        <input
-          type="text"
-          className="chat-input"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message..."
-          disabled={isLoading}
-        />
-        <motion.button
-          type="submit"
-          className="send-button"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          disabled={isLoading || !message.trim()}
-        >
-          <ion-icon name="send"></ion-icon>
-        </motion.button>
-      </form>
+      <div className="chat-input-area">
+        <form className="chat-input-form" onSubmit={handleSendMessage}>
+          <input
+            type="text"
+            className="chat-input"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type a message..."
+            disabled={isLoading}
+          />
+          <motion.button
+            type="submit"
+            className="send-button"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            disabled={isLoading || !message.trim()}
+          >
+            <ion-icon name="send"></ion-icon>
+          </motion.button>
+        </form>
+      </div>
+      <BottomBar onSettingsClick={handleSettingsClick} />
       <SettingsModal
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}

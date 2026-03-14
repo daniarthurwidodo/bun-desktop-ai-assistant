@@ -1,6 +1,7 @@
 import { MainView } from "./views";
 import { useQDragSelection, useToggleMaximize } from "./hooks";
 import { motion, AnimatePresence } from "framer-motion";
+import { ToastProvider } from "./components/ToastNotification";
 import "./App.css";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   useToggleMaximize();
 
   return (
-    <>
+    <ToastProvider>
       <MainView />
       {isSelecting && (
         <div className="selection-rectangle" style={rectStyle} />
@@ -37,7 +38,7 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </ToastProvider>
   );
 }
 

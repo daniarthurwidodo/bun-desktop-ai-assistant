@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 import "./ModelSelector.css";
 
 const MODELS = [
-  { id: "openai/gpt-3.5-turbo", name: "GPT-3.5 Turbo", provider: "OpenAI", pricing: "free" },
-  { id: "openai/gpt-4-turbo", name: "GPT-4 Turbo", provider: "OpenAI", pricing: "paid" },
-  { id: "openai/gpt-4o", name: "GPT-4o", provider: "OpenAI", pricing: "paid" },
-  { id: "openai/gpt-4o-mini", name: "GPT-4o Mini", provider: "OpenAI", pricing: "free" },
-  { id: "anthropic/claude-3-haiku", name: "Claude 3 Haiku", provider: "Anthropic", pricing: "free" },
-  { id: "anthropic/claude-3-sonnet", name: "Claude 3 Sonnet", provider: "Anthropic", pricing: "paid" },
-  { id: "anthropic/claude-3-opus", name: "Claude 3 Opus", provider: "Anthropic", pricing: "paid" },
-  { id: "google/gemini-pro-1.5", name: "Gemini Pro 1.5", provider: "Google", pricing: "free" },
-  { id: "meta-llama/llama-3-8b-instruct", name: "Llama 3 8B", provider: "Meta", pricing: "free" },
-  { id: "meta-llama/llama-3-70b-instruct", name: "Llama 3 70B", provider: "Meta", pricing: "free" },
-  { id: "mistralai/mistral-small", name: "Mistral Small", provider: "Mistral", pricing: "free" },
-  { id: "mistralai/mistral-large", name: "Mistral Large", provider: "Mistral", pricing: "paid" },
+  { id: "openai/gpt-3.5-turbo", name: "GPT-3.5 Turbo", provider: "OpenAI", pricing: "free", capabilities: ["text"] },
+  { id: "openai/gpt-4-turbo", name: "GPT-4 Turbo", provider: "OpenAI", pricing: "paid", capabilities: ["text", "image"] },
+  { id: "openai/gpt-4o", name: "GPT-4o", provider: "OpenAI", pricing: "paid", capabilities: ["text", "image"] },
+  { id: "openai/gpt-4o-mini", name: "GPT-4o Mini", provider: "OpenAI", pricing: "free", capabilities: ["text", "image"] },
+  { id: "anthropic/claude-3-haiku", name: "Claude 3 Haiku", provider: "Anthropic", pricing: "free", capabilities: ["text", "image"] },
+  { id: "anthropic/claude-3-sonnet", name: "Claude 3 Sonnet", provider: "Anthropic", pricing: "paid", capabilities: ["text", "image"] },
+  { id: "anthropic/claude-3-opus", name: "Claude 3 Opus", provider: "Anthropic", pricing: "paid", capabilities: ["text", "image"] },
+  { id: "google/gemini-pro-1.5", name: "Gemini Pro 1.5", provider: "Google", pricing: "free", capabilities: ["text", "image"] },
+  { id: "meta-llama/llama-3-8b-instruct", name: "Llama 3 8B", provider: "Meta", pricing: "free", capabilities: ["text"] },
+  { id: "meta-llama/llama-3-70b-instruct", name: "Llama 3 70B", provider: "Meta", pricing: "free", capabilities: ["text"] },
+  { id: "mistralai/mistral-small", name: "Mistral Small", provider: "Mistral", pricing: "free", capabilities: ["text"] },
+  { id: "mistralai/mistral-large", name: "Mistral Large", provider: "Mistral", pricing: "paid", capabilities: ["text"] },
 ];
 
 export function ModelSelector() {
@@ -49,6 +49,14 @@ export function ModelSelector() {
         <span className={`model-badge ${currentModel.pricing}`}>
           {currentModel.pricing === "free" ? "Free" : "Paid"}
         </span>
+        <span className="capability-tags">
+          {currentModel.capabilities.includes("image") && (
+            <span className="capability-tag image">IMG</span>
+          )}
+          {!currentModel.capabilities.includes("image") && (
+            <span className="capability-tag text-only">TXT</span>
+          )}
+        </span>
         <ion-icon
           name={isOpen ? "chevron-up-outline" : "chevron-down-outline"}
           className="chevron"
@@ -73,9 +81,16 @@ export function ModelSelector() {
                   <span className="model-option-name">{model.name}</span>
                   <span className="model-option-provider">{model.provider}</span>
                 </div>
-                <span className={`model-option-badge ${model.pricing}`}>
-                  {model.pricing === "free" ? "Free" : "Paid"}
-                </span>
+                <div className="model-option-meta">
+                  <div className="model-option-badges">
+                    <span className={`model-option-badge ${model.pricing}`}>
+                      {model.pricing === "free" ? "Free" : "Paid"}
+                    </span>
+                    {model.capabilities.includes("image") && (
+                      <span className="capability-tag image">IMG</span>
+                    )}
+                  </div>
+                </div>
               </button>
             ))}
           </div>
