@@ -80,8 +80,6 @@
 
 .bottom-bar-cog-button:hover {
   color: var(--accent-primary);
-  border-color: var(--border-medium);
-  background: var(--surface-bg);
 }
 
 .bottom-bar-cog-button ion-icon {
