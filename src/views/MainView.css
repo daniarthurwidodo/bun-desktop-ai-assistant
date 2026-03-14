@@ -16,7 +16,7 @@
 .chat-messages {
   position: absolute;
   right: 0;
-  bottom: 116px;
+  bottom: 86px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -68,15 +68,20 @@
 }
 
 .message.user {
-  background: rgba(13, 115, 236, 0.15);
+  background: rgb(0, 32, 71);
   border-color: var(--accent-primary);
   align-self: flex-end;
   flex-direction: row-reverse;
+  display: flex;
+  align-items: center;
+  width: max-content;
 }
 
 .message.assistant {
   background: var(--surface-bg);
   border-color: var(--border-medium);
+  display: flex;
+  align-items: center;
 }
 
 .message.error {
