@@ -3,3 +3,4 @@ export { TitleBar } from './TitleBar.jsx';
 export { SettingsModal } from './SettingsModal.jsx';
 export { ModelSelector } from './ModelSelector.jsx';
 export { BottomBar } from './BottomBar.jsx';
+export { KeybindsHelp } from './KeybindsHelp.jsx';

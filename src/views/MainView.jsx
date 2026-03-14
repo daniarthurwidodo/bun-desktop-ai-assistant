@@ -1,4 +1,4 @@
-import { TitleBar, SettingsModal, BottomBar } from "../components";
+import { TitleBar, SettingsModal, BottomBar, KeybindsHelp } from "../components";
 import { useToast } from "../components/ToastNotification";
 import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/core";
@@ -179,6 +179,7 @@ export function MainView() {
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
       />
+      <KeybindsHelp />
     </main>
   );
 }

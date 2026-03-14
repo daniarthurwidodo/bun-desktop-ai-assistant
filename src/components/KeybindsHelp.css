@@ -1,0 +1,95 @@
+.keybinds-help {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 280px;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  animation: keybindsFadeIn 0.3s ease-out;
+}
+
+@keyframes keybindsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.keybinds-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.keybinds-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.keybinds-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.keybinds-dismiss:hover {
+  background: var(--surface-bg);
+  color: var(--text-primary);
+}
+
+.keybinds-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.keybind-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.keybind-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  background: var(--surface-bg);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-primary);
+  box-shadow: 0 2px 0 var(--border-subtle);
+}
+
+.keybind-description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
