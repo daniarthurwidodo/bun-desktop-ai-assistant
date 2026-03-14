@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 42px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,13 +36,6 @@
   gap: 8px;
   flex: 1;
   min-width: 0;
-}
-
-.bottom-bar-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
 }
 
 .bottom-bar-right {
@@ -93,10 +86,4 @@
 
 .bottom-bar-cog-button ion-icon {
   font-size: 16px;
-}
-
-/* Flip the model dropdown to open upward in the bottom bar */
-.bottom-bar .model-dropdown {
-  top: auto;
-  bottom: calc(100% + 8px);
 }

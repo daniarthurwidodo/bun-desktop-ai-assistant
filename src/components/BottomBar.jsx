@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
-import { ModelSelector } from "./ModelSelector";
 import "./BottomBar.css";
 
 const cogVariants = {
@@ -34,9 +33,6 @@ export function BottomBar({ onSettingsClick }) {
             <span>{osInfo.os_type} ({osInfo.arch})</span>
           </div>
         )}
-      </div>
-      <div className="bottom-bar-center">
-        <ModelSelector />
       </div>
       <div className="bottom-bar-right">
         <motion.button

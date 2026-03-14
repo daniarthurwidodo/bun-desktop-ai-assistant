@@ -1,5 +1,6 @@
 import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { useState, useEffect } from "react";
+import { ModelSelector } from "./ModelSelector";
 import { WindowControls } from "./WindowControls";
 import "./TitleBar.css";
 
@@ -42,6 +43,7 @@ export function TitleBar() {
           <ion-icon name="pulse-outline"></ion-icon>
         </div>
         <span className="app-title">Bun Desktop AI Assistant</span>
+        <ModelSelector />
       </div>
       <div className="window-controls-container">
         <WindowControls />

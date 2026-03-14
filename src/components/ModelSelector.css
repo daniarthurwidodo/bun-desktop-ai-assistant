@@ -141,7 +141,6 @@
 
 .model-option:hover {
   background: var(--surface-bg);
-  border-color: var(--border-subtle);
 }
 
 .model-option.selected {
