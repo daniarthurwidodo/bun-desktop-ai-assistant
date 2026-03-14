@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import "./ModelSelector.css";
 
@@ -36,13 +35,9 @@ export function ModelSelector() {
 
   return (
     <div className="model-selector">
-      <motion.button
+      <button
         className="model-selector-button"
         onClick={() => setIsOpen(!isOpen)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
       >
         <ion-icon name="layers-outline"></ion-icon>
         <span className="model-name">{currentModel.name}</span>
@@ -61,15 +56,10 @@ export function ModelSelector() {
           name={isOpen ? "chevron-up-outline" : "chevron-down-outline"}
           className="chevron"
         ></ion-icon>
-      </motion.button>
+      </button>
 
       {isOpen && (
-        <motion.div
-          className="model-dropdown"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-        >
+        <div className="model-dropdown">
           <div className="model-list">
             {MODELS.map((model) => (
               <button
@@ -94,7 +84,7 @@ export function ModelSelector() {
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
     </div>
   );

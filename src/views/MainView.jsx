@@ -1,6 +1,5 @@
 import { TitleBar, SettingsModal, BottomBar } from "../components";
 import { useToast } from "../components/ToastNotification";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./MainView.css";
@@ -120,15 +119,11 @@ export function MainView() {
       <TitleBar />
 
       <div className="chat-messages">
-        <AnimatePresence>
-          {messages.map((msg, index) => (
-            <motion.div
-              key={index}
-              className={`message ${msg.role}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`message ${msg.role}`}
+          >
               <div className="message-avatar">
                 <ion-icon
                   name={
@@ -141,15 +136,10 @@ export function MainView() {
                 ></ion-icon>
               </div>
               <div className="message-content">{msg.content}</div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+          </div>
+        ))}
         {isLoading && (
-          <motion.div
-            className="message assistant loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
+          <div className="message assistant loading">
             <div className="message-avatar">
               <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
             </div>
@@ -160,7 +150,7 @@ export function MainView() {
                 <span></span>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -175,15 +165,13 @@ export function MainView() {
             placeholder="Type a message..."
             disabled={isLoading}
           />
-          <motion.button
+          <button
             type="submit"
             className="send-button"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
             disabled={isLoading || !message.trim()}
           >
             <ion-icon name="send"></ion-icon>
-          </motion.button>
+          </button>
         </form>
       </div>
       <BottomBar onSettingsClick={handleSettingsClick} />

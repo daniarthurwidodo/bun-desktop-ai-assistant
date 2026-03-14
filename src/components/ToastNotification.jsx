@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from "framer-motion";
 import React, { createContext, useContext, useState } from "react";
 import "./ToastNotification.css";
 
@@ -61,8 +60,7 @@ function ToastNotifications() {
   
   return (
     <div className="toast-container">
-      <AnimatePresence>
-        {toasts.map(({ id, message, type, duration }) => (
+      {toasts.map(({ id, message, type, duration }) => (
           <ToastItem 
             key={id} 
             id={id} 
@@ -71,32 +69,22 @@ function ToastNotifications() {
             duration={duration}
             onRemove={() => removeToast(id)} 
           />
-        ))}
-      </AnimatePresence>
+      ))}
     </div>
   );
 }
 
 function ToastItem({ id, message, type, duration, onRemove }) {
-  const handleExitComplete = () => {
-    onRemove();
-  };
-
   return (
-    <motion.div
+    <div
       className={getToastClass(type)}
-      initial={{ x: "100%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      onExitComplete={handleExitComplete}
     >
       <ion-icon className="toast-icon" name={getToastIcon(type)}></ion-icon>
       <div className="toast-message">{message}</div>
       <button className="toast-close" onClick={() => onRemove()}>
         <ion-icon name="close-outline"></ion-icon>
       </button>
-    </motion.div>
+    </div>
   );
 }
 

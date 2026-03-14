@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import "./SettingsModal.css";
 
@@ -27,21 +26,14 @@ export function SettingsModal({ isOpen, onClose }) {
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
-        <motion.div
+        <div
           className="settings-modal-backdrop"
           onClick={handleBackdropClick}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
         >
-          <motion.div
+          <div
             className="settings-modal"
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="settings-modal-header">
@@ -79,18 +71,16 @@ export function SettingsModal({ isOpen, onClose }) {
             </div>
 
             <div className="settings-modal-footer">
-              <motion.button
+              <button
                 className="save-button"
                 onClick={handleSaveApiKey}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
               >
                 Save Changes
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }
