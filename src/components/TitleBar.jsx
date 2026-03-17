@@ -45,7 +45,7 @@ export function TitleBar() {
         <span className="app-title">Bun Desktop AI Assistant</span>
         <ModelSelector />
       </div>
-      <div className="window-controls-container">
+      <div className="window-controls-container" onMouseDown={(e) => e.stopPropagation()}>
         <WindowControls />
       </div>
     </div>
