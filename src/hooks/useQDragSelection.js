@@ -30,7 +30,8 @@ export function useQDragSelection() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key.toLowerCase() === "q" && e.ctrlKey && !e.repeat) {
+      // Support both Ctrl (Windows/Linux) and Cmd (macOS)
+      if (e.key.toLowerCase() === "q" && (e.ctrlKey || e.metaKey) && !e.repeat) {
         isQPressedRef.current = true;
         document.body.style.cursor = "crosshair";
         document.documentElement.style.cursor = "crosshair";
@@ -38,7 +39,7 @@ export function useQDragSelection() {
     };
 
     const handleKeyUp = (e) => {
-      if (e.key.toLowerCase() === "q" || e.key === "Control") {
+      if (e.key.toLowerCase() === "q" || e.key === "Control" || e.key === "Meta") {
         isQPressedRef.current = false;
         setIsSelecting(false);
         document.body.style.cursor = "default";

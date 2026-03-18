@@ -24,28 +24,43 @@ export function TitleBar() {
   }, []);
 
   const handleDragStart = async (e) => {
-    // Only drag if not maximized
-    if (isMaximized) return;
+    console.log('[TitleBar] handleDragStart - type:', e.type, 'button:', e.button, 'buttons:', e.buttons);
 
-    const appWindow = getCurrentWebviewWindow();
-    if (e.buttons === 1) {
-      await appWindow.startDragging();
+    // Only allow left button drag
+    if (e.button !== 0) {
+      console.log('[TitleBar] Ignoring - not left button');
+      return;
     }
+
+    // Only drag if not maximized
+    if (isMaximized) {
+      console.log('[TitleBar] Ignoring - window is maximized');
+      return;
+    }
+
+    console.log('[TitleBar] Starting drag...');
+    const appWindow = getCurrentWebviewWindow();
+    await appWindow.startDragging();
+    console.log('[TitleBar] Drag started');
   };
 
   return (
     <div
       className="title-bar"
       onMouseDown={handleDragStart}
+      onMouseUp={(e) => console.log('[TitleBar] mouseUp - button:', e.button)}
+      onTouchStart={(e) => console.log('[TitleBar] touchStart')}
     >
       <div className="title-bar-drag-region">
         <div className="app-icon">
           <ion-icon name="pulse-outline"></ion-icon>
         </div>
         <span className="app-title">Bun Desktop AI Assistant</span>
-        <ModelSelector />
+        <div onMouseDown={(e) => { e.stopPropagation(); e.preventDefault(); }}>
+          <ModelSelector />
+        </div>
       </div>
-      <div className="window-controls-container" onMouseDown={(e) => e.stopPropagation()}>
+      <div className="window-controls-container" onMouseDown={(e) => { e.stopPropagation(); e.preventDefault(); }}>
         <WindowControls />
       </div>
     </div>

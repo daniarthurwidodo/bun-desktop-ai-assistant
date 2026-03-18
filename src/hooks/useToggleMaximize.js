@@ -9,7 +9,8 @@ export function useToggleMaximize() {
       const tagName = document.activeElement?.tagName?.toLowerCase();
       if (tagName === "input" || tagName === "textarea") return;
 
-      if (e.key.toLowerCase() === "w" && e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey) {
+      // Support both Ctrl (Windows/Linux) and Cmd (macOS)
+      if (e.key.toLowerCase() === "w" && (e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey) {
         e.preventDefault();
         appWindow.toggleMaximize();
       }

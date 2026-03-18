@@ -9,7 +9,6 @@
   height: 40px;
   background: var(--secondary-bg);
   border-bottom: var(--border-subtle);
-  -webkit-app-region: drag;
   user-select: none;
   z-index: 1000;
   box-shadow: var(--shadow-sm);
@@ -29,6 +28,7 @@
     transparent 100%
   );
   opacity: 0.6;
+  pointer-events: none;
 }
 
 .title-bar-drag-region {
@@ -38,7 +38,6 @@
   gap: 12px;
   padding-left: 16px;
   height: 100%;
-  -webkit-app-region: drag;
 }
 
 .app-icon {
@@ -49,6 +48,7 @@
   height: 24px;
   color: var(--accent-primary);
   cursor: default;
+  pointer-events: auto;
 }
 
 .app-icon ion-icon {
@@ -63,7 +63,7 @@
   letter-spacing: 0.5px;
   cursor: default;
   position: relative;
-  -webkit-app-region: drag;
+  pointer-events: auto;
 }
 
 .window-controls {
